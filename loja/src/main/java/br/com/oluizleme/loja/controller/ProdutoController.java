@@ -1,9 +1,10 @@
 package br.com.oluizleme.loja.controller;
 
 import br.com.oluizleme.loja.modelo.Produto;
-import br.com.oluizleme.loja.modelo.dto.ProdutoDescricaoDto;
-import br.com.oluizleme.loja.modelo.dto.ProdutoDto;
+import br.com.oluizleme.loja.modelo.dto.produto.ProdutoDescricaoDto;
+import br.com.oluizleme.loja.modelo.dto.produto.ProdutoDto;
 import br.com.oluizleme.loja.repositorio.ProdutoRepository;
+import br.com.oluizleme.loja.services.produto.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,18 +22,20 @@ public class ProdutoController {
 
     @Autowired
     private ProdutoRepository produtoRepository;
+    @Autowired
+    private ProdutoService produtoService;
 
-    @GetMapping("/")
+    @GetMapping(value = "/")
     public List<ProdutoDto> listarProdutos() {
         List<Produto> produtos = produtoRepository.findAll();
         return ProdutoDto.converter(produtos);
     }
 
-    @GetMapping("/{codigo}")
-    public ResponseEntity<ProdutoDescricaoDto> consultarProduto(@PathVariable @NotNull Long codigo) {
-        Optional<Produto> optional = produtoRepository.findById(codigo);
-        if(optional.isPresent()) {
-            return ResponseEntity.ok(new ProdutoDescricaoDto(optional.get()));
+    @GetMapping(value = "/{produtoCodigo}")
+    public ResponseEntity<ProdutoDescricaoDto> consultarProduto(@PathVariable(value = "produtoCodigo") @NotNull Long codigo) {
+        Optional<ProdutoDescricaoDto> produtoConsultado = produtoService.consultarProdutoPorCodigo(codigo);
+        if(produtoConsultado.isPresent()) {
+            return ResponseEntity.ok(produtoConsultado.get());
         }
         return ResponseEntity.notFound().build();
     }
