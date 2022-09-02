@@ -1,19 +1,19 @@
-INSERT INTO PRODUTO(nome, descricao, valor) VALUES('Berrante', 'Instrumento para chamar a boiada', 500.0);
-INSERT INTO PRODUTO(nome, descricao, valor) VALUES('Guaiaca Panteneira','Cinta de peão', 180.0);
-INSERT INTO PRODUTO(nome, descricao, valor) VALUES('Pelego Natural','Pelego natural de pele de carneiro',250.50);
-INSERT INTO PRODUTO(nome, descricao, valor) VALUES('Sela Australiana','Sela em couro do crocodilo australiano', 850.0);
-INSERT INTO PRODUTO(nome, descricao, valor) VALUES('Cuia de tereré','Cuia de xifre de marruá', 156.20);
-INSERT INTO PRODUTO(nome, descricao, valor) VALUES('Erva Mate','Erva sabor menta',60.50);
+INSERT INTO PRODUTO(nome, descricao, valor) VALUES('Desbravando SOLID', 'Práticas avançadas para códigos de qualidade em Java moderno', 104.9);
+INSERT INTO PRODUTO(nome, descricao, valor) VALUES('Apache Kafka e Spring Boot','Comunicação assíncrona entre microsserviços', 74.9);
+INSERT INTO PRODUTO(nome, descricao, valor) VALUES('Back-end Java','Microsserviços, Spring Boot e Kubernetes', 74.9);
+INSERT INTO PRODUTO(nome, descricao, valor) VALUES('Séries temporais com Prophet','Análise e previsão de dados com Python', 850.0);
+INSERT INTO PRODUTO(nome, descricao, valor) VALUES('NoSQL','Como armazenar os dados de uma aplicação moderna', 84.20);
+INSERT INTO PRODUTO(nome, descricao, valor) VALUES('Git e GitHub','Controlando versões com Git e GitHub',60.50);
 
 
 INSERT INTO CLIENTE(cpf, nome, sobrenome) VALUES(21370937741, 'Joventino', 'Leoncio');
-INSERT INTO CLIENTE(cpf, nome, sobrenome) VALUES(79208756769, 'Veio', 'do Rio');
+INSERT INTO CLIENTE(cpf, nome, sobrenome) VALUES(79208756769, 'José', 'Rio');
 INSERT INTO CLIENTE(cpf, nome, sobrenome) VALUES(73225716499, 'José', 'Leoncio');
 INSERT INTO CLIENTE(cpf, nome, sobrenome) VALUES(25731054908, 'José Lucas', 'de Nada');
-INSERT INTO CLIENTE(cpf, nome, sobrenome) VALUES(26834718745, 'Tadeu', 'Leoncio');
-INSERT INTO CLIENTE(cpf, nome, sobrenome) VALUES(90848638280, 'Joventino', 'Leoncio Neto');
-INSERT INTO CLIENTE(cpf, nome, sobrenome) VALUES(59526666631, 'Xeréu Trindade', 'Cramulhão');
-INSERT INTO CLIENTE(cpf, nome, sobrenome) VALUES(59591587449, 'Alcides', 'da Fivela de Respeito');
-INSERT INTO CLIENTE(cpf, nome, sobrenome) VALUES(26186516695, 'Tenório', 'Mardito');
-INSERT INTO CLIENTE(cpf, nome, sobrenome) VALUES(11924377640, 'Tibério', 'Peão');
-INSERT INTO CLIENTE(cpf, nome, sobrenome) VALUES(70648687414, 'Eugênio', 'Chalaneiro');
+INSERT INTO CLIENTE(cpf, nome, sobrenome) VALUES(26834718745, 'Tadeu', 'Costa');
+INSERT INTO CLIENTE(cpf, nome, sobrenome) VALUES(90848638280, 'Fabio', 'Brandão');
+INSERT INTO CLIENTE(cpf, nome, sobrenome) VALUES(59526666631, 'Xavier', 'Carvalho');
+INSERT INTO CLIENTE(cpf, nome, sobrenome) VALUES(59591587449, 'Alcides', 'Silva');
+INSERT INTO CLIENTE(cpf, nome, sobrenome) VALUES(26186516695, 'Rodrigo', 'Carvalho');
+INSERT INTO CLIENTE(cpf, nome, sobrenome) VALUES(11924377640, 'Leandro', 'Antunes');
+INSERT INTO CLIENTE(cpf, nome, sobrenome) VALUES(70648687414, 'Eugênio', 'Gomes');
