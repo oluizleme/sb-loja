@@ -1,5 +1,7 @@
 package br.com.oluizleme.loja.config;
 
+import br.com.oluizleme.loja.modelo.KeyLabelEnum;
+import br.com.oluizleme.loja.modelo.KeyLabelEnumDeserializer;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -8,6 +10,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,6 +25,7 @@ import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactor
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.time.Duration;
 import java.util.HashMap;
@@ -40,6 +44,18 @@ public class RedisCacheConfiguration extends CachingConfigurerSupport {
     public RedisTemplate<String, Object> redisTemplate() {
         RedisTemplate<String,Object> template = new RedisTemplate<>();
         template.setConnectionFactory(redisConnectionFactory());
+
+        Jackson2JsonRedisSerializer<Object> serializer = new Jackson2JsonRedisSerializer<>(Object.class);
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        objectMapper.findAndRegisterModules();
+
+        serializer.setObjectMapper(objectMapper);
+
+        template.setKeySerializer(new StringRedisSerializer());
+        template.setValueSerializer(serializer);
+        template.setHashKeySerializer(new StringRedisSerializer());
+        template.setHashValueSerializer(serializer);
         return template;
     }
 
@@ -93,6 +109,10 @@ public class RedisCacheConfiguration extends CachingConfigurerSupport {
         mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
         mapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
         jackson2JsonRedisSerializer.setObjectMapper(mapper);
+
+        SimpleModule module = new SimpleModule();
+        module.addDeserializer(KeyLabelEnum.class, new KeyLabelEnumDeserializer());
+        mapper.registerModule(module);
         return jackson2JsonRedisSerializer;
     }
 
