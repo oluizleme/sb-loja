@@ -1,12 +1,10 @@
 package br.com.oluizleme.loja.modelo;
 
+import br.com.oluizleme.loja.modelo.enums.StatusProduto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
@@ -22,10 +20,14 @@ public class Produto {
     private String descricao;
     @Getter
     private BigDecimal valor;
+    @Getter
+    @Enumerated(EnumType.STRING)
+    private StatusProduto status;
 
-    public Produto(String nome, String descricao, BigDecimal valor) {
+    public Produto(String nome, String descricao, BigDecimal valor, StatusProduto status) {
         this.nome = nome;
         this.descricao = descricao;
         this.valor = valor;
+        this.status = status;
     }
 }
