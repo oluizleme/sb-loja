@@ -16,6 +16,7 @@ public class KeyLabelEnumTypeSerializer extends JsonSerializer<KeyLabelEnum> {
 		gen.writeString(keyLabelEnum.getLabel());
 		gen.writeFieldName("name");
 		gen.writeObject(keyLabelEnum.toString());
+
 		gen.writeEndObject();
 	}
 
